@@ -1,16 +1,16 @@
-﻿using Lands.Models;
-using System.Collections.Generic;
-
-namespace Lands.ViewModels
+﻿namespace Lands.ViewModels
 {
-    public class MainViewModel
+   using Lands.Models;
+   using System.Collections.Generic;
+
+   public class MainViewModel
     {
       #region Properties
-      //public List<Land> LandsList
-      //{
-      //   get;
-      //   set;
-      //}
+      public List<Land> LandsList
+      {
+         get;
+         set;
+      }
 
       //public TokenResponse Token
       //{
