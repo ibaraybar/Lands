@@ -5,6 +5,7 @@
    using Lands.Views;
    using System.Windows.Input;
    using Xamarin.Forms;
+   using Lands.Helpers;
 
    public class LoginViewModel : BaseViewModel
     {
@@ -57,9 +58,9 @@
          if (string.IsNullOrEmpty(this.Email))
          {
             await Application.Current.MainPage.DisplayAlert(
-               "Error",
-               "You must enter an email.",
-               "Accept");
+               Languages.Error,
+               Languages.EmailValidation,
+               Languages.Accept);
             return;
          }
 
