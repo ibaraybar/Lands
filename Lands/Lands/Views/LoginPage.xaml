@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:Lands.Helpers"
              x:Class="Lands.Views.LoginPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Login">
@@ -24,7 +25,7 @@
                        VerticalOptions="Center">
                     </Label>
                     <Entry Keyboard="Email"
-                       Placeholder="Enter your email..."
+                       Placeholder="{i18n:Translate EmailPlaceHolder}"
                        Grid.Row="0"
                        Grid.Column="1"
                        Text="{Binding Email, Mode=TwoWay}">
@@ -52,7 +53,7 @@
                     VerticalOptions="CenterAndExpand">
                     <Label
                         HorizontalOptions="StartAndExpand"
-                        Text="Remember me on this device"
+                        Text="{i18n:Translate Rememberme}"
                         VerticalOptions="Center">
                     </Label>
                     <Switch 
