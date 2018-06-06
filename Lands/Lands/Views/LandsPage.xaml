@@ -6,42 +6,54 @@
              Title="Lands">
     <ContentPage.Content>
         <StackLayout
-            BindingContext="{Binding Lands}"
-            Padding="5">
-            <ListView 
-                HasUnevenRows="true" 
-                IsPullToRefreshEnabled="true"
+            BindingContext="{Binding Lands}">
+            <SearchBar
+                BackgroundColor="Silver"
+                Placeholder="Search..."
+                SearchCommand="{Binding SearchCommand}"
+                Text="{Binding Filter, Mode=TwoWay}">
+            </SearchBar>
+            <ListView
+                BackgroundColor="Silver"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                 ItemsSource="{Binding Lands}"
-                RefreshCommand="{Binding RefreshCommand}">
+                RefreshCommand="{Binding RefreshCommand}"
+                SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <StackLayout 
-                                        Grid.Column="0"
-                                        VerticalOptions="Center">
-                                    <Label 
-                                            FontAttributes="Bold"
-                                            FontSize="Medium" 
-                                            Text="{Binding Name}"
-                                            TextColor="Black">
-                                    </Label>
-                                    <Label 
-                                            Text="{Binding Capital}"
-                                            TextColor="Black">
-                                    </Label>
-                                </StackLayout>
-                                <Image 
-                                        Grid.Column="1"
-                                        HorizontalOptions="End" 
-                                        Source="ic_chevron_right">
-                                </Image>
-                            </Grid>
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="True"
+                                Margin="5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                    Grid.Column="0"
+                                    VerticalOptions="Center">
+                                        <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        Text="{Binding Name}"
+                                        TextColor="Black">
+                                        </Label>
+                                        <Label
+                                        Text="{Binding Capital}"
+                                        TextColor="Black">
+                                        </Label>
+                                    </StackLayout>
+                                    <Image
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    Source="ic_chevron_right">
+                                    </Image>
+                                </Grid>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

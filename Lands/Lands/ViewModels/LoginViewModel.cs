@@ -83,14 +83,14 @@
             return;
          }
 
+         MainViewModel.GetInstance().Lands = new LandsViewModel();
+         await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+
          this.IsRunning = false;
          this.IsEnabled = true;
 
          this.Email = string.Empty;
          this.Password = string.Empty;
-
-         MainViewModel.GetInstance().Lands = new LandsViewModel();
-         await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
       }
       #endregion
 
@@ -99,6 +99,9 @@
       {
          this.IsRemembered = true;
          this.isEnabled = true;
+
+         this.Email = "ib@gmail.com";
+         this.Password = "1234";
       }
       #endregion
    }

@@ -1,7 +1,24 @@
-﻿namespace Lands.ViewModels
+﻿using Lands.Models;
+using System.Collections.Generic;
+
+namespace Lands.ViewModels
 {
     public class MainViewModel
     {
+      #region Properties
+      //public List<Land> LandsList
+      //{
+      //   get;
+      //   set;
+      //}
+
+      //public TokenResponse Token
+      //{
+      //   get;
+      //   set;
+      //}
+      #endregion
+
       #region ViewModels
       public LoginViewModel Login { get; set; }
       public LandsViewModel Lands { get; set; }
@@ -20,7 +37,7 @@
 
       public static MainViewModel GetInstance()
       {
-         if (instance != null)
+         if (instance == null)
          {
             return new MainViewModel();
          }
