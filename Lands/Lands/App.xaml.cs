@@ -1,5 +1,4 @@
 using Lands.Views;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,6 +7,10 @@ namespace Lands
 {
 	public partial class App : Application
 	{
+      #region Properties
+      public static NavigationPage Navigator { get; internal set; } 
+      #endregion
+
       #region Constructors
       public App()
       {
