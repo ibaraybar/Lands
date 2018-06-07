@@ -1,7 +1,7 @@
-﻿namespace Lands.Models
+﻿namespace Lands.Domain
 {
-    public class Response
-    {
+   public class Response
+   {
       public bool IsSuccess { get; set; }
 
       public string Message { get; set; }
