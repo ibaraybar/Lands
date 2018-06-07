@@ -18,7 +18,8 @@
             </Label>
             <ListView
                 HasUnevenRows="True"
-                ItemsSource="{Binding Currencies}">
+                ItemsSource="{Binding Currencies}"
+                SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

@@ -18,7 +18,8 @@
             </Label>
             <ListView
                 HasUnevenRows="True"
-                ItemsSource="{Binding Borders}">
+                ItemsSource="{Binding Borders}"
+                SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
