@@ -11,7 +11,9 @@
    using Helpers;
    using System.IO;
    using System;
+   using Newtonsoft.Json.Linq;
 
+   [RoutePrefix("api/Users")]
    public class UsersController : ApiController
    {
       private DataContext db = new DataContext();
@@ -22,11 +24,23 @@
          return db.Users;
       }
 
-      // GET: api/Users/5
-      [ResponseType(typeof(User))]
-      public async Task<IHttpActionResult> GetUser(int id)
+      [HttpPost]
+      [Route("GetUserByEmail")]
+      public async Task<IHttpActionResult> GetUser(JObject form)
       {
-         User user = await db.Users.FindAsync(id);
+
+         var email = string.Empty;
+         dynamic jsonObject = form;
+         try
+         {
+            email = jsonObject.Email.Value;
+         }
+         catch
+         {
+            return BadRequest("Missing parameter.");
+         }
+
+         User user = await db.Users.Where(u => u.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
          if (user == null)
          {
             return NotFound();
