@@ -6,8 +6,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using FFImageLoading.Forms.Droid;
+using FFImageLoading.Forms.Platform;
 using ImageCircle.Forms.Plugin.Droid;
+using Plugin.Permissions;
 
 namespace Lands.Droid
 {
@@ -25,6 +26,14 @@ namespace Lands.Droid
          CachedImageRenderer.Init(true);
          ImageCircleRenderer.Init();
          LoadApplication(new App());
+      }
+
+      public override void OnRequestPermissionsResult(
+         int requestCode, 
+         string[] permissions, 
+         [GeneratedEnum] Permission[] grantResults)
+      {
+         PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
       }
    }
 }
