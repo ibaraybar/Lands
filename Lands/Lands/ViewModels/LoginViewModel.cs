@@ -12,6 +12,7 @@
     {
       #region Services
       private ApiService apiService;
+      private DataService dataService;
       #endregion
 
       #region Attributes
@@ -123,17 +124,22 @@
             apiSecurity,
             "/api",
             "/Users/GetUserByEmail",
+            token.TokenType,
+            token.AccessToken,
             this.Email);
+
+         var userLocal = Converter.ToUserLocal(user);
 
          var mainViewModel = MainViewModel.GetInstance();
          mainViewModel.Token = token.AccessToken;
          mainViewModel.TokenType = token.TokenType;
-         mainViewModel.User = user;
+         mainViewModel.User = userLocal;
 
          if (this.IsRemembered)
          {
             Settings.Token = token.AccessToken;
             Settings.TokenType = token.TokenType;
+            this.dataService.DeleteAllAndInsert(userLocal);
          }
 
          mainViewModel.Lands = new LandsViewModel();
@@ -165,12 +171,13 @@
       public LoginViewModel()
       {
          this.apiService = new ApiService();
+         this.dataService = new DataService();
 
          this.IsRemembered = true;
          this.isEnabled = true;
 
-         this.Email = "ibaraybar@hotmail.com";
-         this.Password = "ibvanechka0512";
+         //this.Email = "ibaraybar@hotmail.com";
+         //this.Password = "ibvanechka0512";
       }
       #endregion
    }

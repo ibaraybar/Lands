@@ -3,6 +3,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Lands.Helpers;
 using Lands.ViewModels;
+using Lands.Services;
+using Lands.Models;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace Lands
@@ -10,7 +12,8 @@ namespace Lands
 	public partial class App : Application
 	{
       #region Properties
-      public static NavigationPage Navigator { get; internal set; } 
+      public static NavigationPage Navigator { get; internal set; }
+      public static MasterPage Master { get; internal set; }
       #endregion
 
       #region Constructors
@@ -24,9 +27,12 @@ namespace Lands
          }
          else
          {
+            var dataService = new DataService();
+            var user = dataService.First<UserLocal>(false);
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = Settings.Token;
             mainViewModel.TokenType = Settings.TokenType;
+            mainViewModel.User = user;
             mainViewModel.Lands = new LandsViewModel();
             Application.Current.MainPage = new MasterPage();
          }

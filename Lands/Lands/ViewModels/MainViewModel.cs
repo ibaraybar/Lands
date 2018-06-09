@@ -7,8 +7,12 @@
    using Lands.Helpers;
    using Lands.Domain;
 
-   public class MainViewModel
+   public class MainViewModel : BaseViewModel
     {
+      #region Attributes
+      private UserLocal user;
+      #endregion
+
       #region Properties
       public List<Land> LandsList
       {
@@ -22,7 +26,11 @@
 
       public string TokenType { get; set; }
 
-      public User User { get; set; }
+      public UserLocal User
+      {
+         get { return this.user; }
+         set { SetValue(ref this.user, value); }
+      }
       #endregion
 
       #region ViewModels
@@ -31,6 +39,8 @@
       public LandViewModel Land { get; set; }
 
       public RegisterViewModel Register { get; set; }
+
+      public MyProfileViewModel MyProfile { get; set; }
       #endregion
 
       #region Constructors
