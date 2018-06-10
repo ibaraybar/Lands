@@ -69,9 +69,9 @@
          if (string.IsNullOrEmpty(this.Password))
          {
             await Application.Current.MainPage.DisplayAlert(
-               "Error",
-               "You must enter a password.",
-               "Accept");
+               Languages.Error,
+               Languages.PasswordValidation,
+               Languages.Accept);
             return;
          }
 
@@ -85,9 +85,9 @@
             this.IsRunning = false;
             this.IsEnabled = true;
             await Application.Current.MainPage.DisplayAlert(
-               "Error",
+               Languages.Error,
                connection.Message,
-               "Accept");
+               Languages.Accept);
             return;
          }
 
@@ -102,9 +102,9 @@
             this.IsRunning = false;
             this.IsEnabled = true;
             await Application.Current.MainPage.DisplayAlert(
-               "Error",
-               "Something was wrong, please try later.",
-               "Accept");
+               Languages.Error,
+               Languages.SomethingWrong,
+               Languages.Accept);
             return;
          }
 
@@ -113,9 +113,9 @@
             this.IsRunning = false;
             this.IsEnabled = true;
             await Application.Current.MainPage.DisplayAlert(
-               "Error",
-               token.ErrorDescription,
-               "Accept");
+               Languages.Error,
+               Languages.LoginError,
+               Languages.Accept);
             this.Password = string.Empty;
             return;
          }
@@ -129,18 +129,23 @@
             this.Email);
 
          var userLocal = Converter.ToUserLocal(user);
+         userLocal.Password = this.Password;
 
          var mainViewModel = MainViewModel.GetInstance();
-         mainViewModel.Token = token.AccessToken;
-         mainViewModel.TokenType = token.TokenType;
+         mainViewModel.Token = token;
          mainViewModel.User = userLocal;
 
          if (this.IsRemembered)
          {
-            Settings.Token = token.AccessToken;
-            Settings.TokenType = token.TokenType;
-            this.dataService.DeleteAllAndInsert(userLocal);
+            Settings.IsRemembered = "true";
          }
+         else
+         {
+            Settings.IsRemembered = "false";
+         }
+
+         this.dataService.DeleteAllAndInsert(userLocal);
+         this.dataService.DeleteAllAndInsert(token);
 
          mainViewModel.Lands = new LandsViewModel();
          Application.Current.MainPage = new MasterPage();

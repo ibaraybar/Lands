@@ -22,9 +22,7 @@
       
       public ObservableCollection<MenuItemViewModel> Menus { get; set; }
 
-      public string Token { get; set; }
-
-      public string TokenType { get; set; }
+      public TokenResponse Token { get; set; }
 
       public UserLocal User
       {
@@ -37,10 +35,9 @@
       public LoginViewModel Login { get; set; }
       public LandsViewModel Lands { get; set; }
       public LandViewModel Land { get; set; }
-
       public RegisterViewModel Register { get; set; }
-
       public MyProfileViewModel MyProfile { get; set; }
+      public ChangePasswordViewModel ChangePassword { get; set; }
       #endregion
 
       #region Constructors
