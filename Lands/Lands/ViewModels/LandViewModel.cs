@@ -1,9 +1,10 @@
 ﻿namespace Lands.ViewModels
 {
    using Lands.Models;
-   using System;
+   using System.Collections.Generic;
    using System.Collections.ObjectModel;
    using System.Linq;
+   using Xamarin.Forms.Maps;
 
    public class LandViewModel : BaseViewModel
     {
@@ -11,6 +12,8 @@
       private ObservableCollection<Border> borders;
       private ObservableCollection<Currency> currencies;
       private ObservableCollection<Language> languages;
+      private ObservableCollection<Pin> landPins;
+      private Position landPosition;
       #endregion
 
       #region Properties
@@ -33,6 +36,18 @@
          get { return this.languages; }
          set { SetValue(ref this.languages, value); }
       }
+
+      public ObservableCollection<Pin> LandPins
+      {
+         get { return this.landPins; }
+         set { this.landPins = value; OnPropertyChanged("LandPins"); }
+      }
+
+      public Position LandPosition
+      {
+         get { return this.landPosition; }
+         set { this.landPosition = value; OnPropertyChanged("LandPosition"); }
+      }
       #endregion
 
       #region Constructors
@@ -42,6 +57,16 @@
          this.LoadBorders();
          this.Currencies = new ObservableCollection<Currency>(this.Land.Currencies);
          this.Languages = new ObservableCollection<Language>(this.Land.Languages);
+         this.LandPosition = new Position(this.Land.Latlng[0], this.Land.Latlng[1]);
+         //this.LandPosition = new Position(10.0, -78.0);
+         var pin = new Pin
+         {
+            Position = this.LandPosition,
+            Label = this.Land.Name,
+            Type = PinType.Place
+         };
+         this.LandPins = new ObservableCollection<Pin>();
+         this.LandPins.Add(pin);
       }
       #endregion
 
@@ -62,7 +87,21 @@
                });
             }
          }
-      } 
+      }
       #endregion
+
+      //#region Singleton
+      //private static LandViewModel instance;
+
+      //public static LandViewModel GetInstance()
+      //{
+      //   if (instance == null)
+      //   {
+      //      return new LandViewModel(land);
+      //   }
+
+      //   return instance;
+      //}
+      //#endregion
    }
 }

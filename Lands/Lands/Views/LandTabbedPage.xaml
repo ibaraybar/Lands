@@ -10,5 +10,6 @@
         <tabs:CurrenciesPage/>
         <tabs:TranslationsPage/>
         <tabs:LanguagesPage/>
+        <tabs:MapPage/>
     </TabbedPage.Children>
 </TabbedPage>
